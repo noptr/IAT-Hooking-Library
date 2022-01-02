@@ -17,7 +17,7 @@ namespace iat_hooker {
 			return *str1 ? -1 : *str2 ? 1 : 0;
 		}
 
-		void* get_export(std::string module, LPCSTR api)
+		void* get_func(std::string module, LPCSTR api)
 		{
 			auto base = (DWORD)GetModuleHandleA(module.c_str());
 			if (!base)
@@ -59,9 +59,9 @@ namespace iat_hooker {
 		}
 	}
 
-	void SetExportHook(std::string modName, std::string exportFunc, void* hookDest)
+	void SetFunctionHook(std::string modName, std::string func, void* hookDest)
 	{
-		void* exported = (void*)utility::get_export(modName, exportFunc.c_str());
+		void* exported = (void*)utility::get_func(modName, func.c_str());
 		SetHook((unsigned char*)exported, (unsigned char*)hookDest);
 	}
 

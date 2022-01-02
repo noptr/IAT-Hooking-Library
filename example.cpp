@@ -6,5 +6,5 @@ int __stdcall HookedMsgBox(HWND hWnd, LPCSTR lpText, LPCSTR lpCaption, UINT uTyp
 }
 
 void InitHook() {
-    iat_hooker::SetExportHook("user32.dll", "MessageBoxA", (void*)HookedMsgBox);
+    iat_hooker::SetFunctionHook("user32.dll", "MessageBoxA", (void*)HookedMsgBox);
 }
